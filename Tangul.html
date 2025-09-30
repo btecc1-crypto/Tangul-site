@@ -43,13 +43,11 @@
       0% { transform: scale(0.5) translateY(100px); opacity: 0; }
       50% { transform: scale(1.1) translateY(-20px); opacity: 1; }
       70% { transform: scale(0.9) translateY(10px); }
-      100% { transform: scale(1) translateY(0); }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
     }
 
     /* Controls */
-    .controls {
-      margin: 10px;
-    }
+    .controls { margin: 10px; }
     button {
       margin: 5px;
       padding: 10px 15px;
@@ -60,9 +58,8 @@
       font-size: 16px;
       cursor: pointer;
     }
-    button:hover {
-      background: #e91e63;
-    }
+    button:hover { background: #e91e63; }
+
     canvas {
       position: fixed;
       top: 0;
@@ -133,17 +130,16 @@
 
       setTimeout(showSlides, 4000);
     }
-    showSlides();
+    window.onload = showSlides;
 
     // Music
     function playMusic() {
-      let bgm = document.getElementById("bgm");
-      bgm.play();
+      document.getElementById("bgm").play();
     }
     function pauseMusic() {
       let bgm = document.getElementById("bgm");
       bgm.pause();
-      bgm.currentTime = 0; // başa sar
+      bgm.currentTime = 0;
     }
 
     // Canvas
