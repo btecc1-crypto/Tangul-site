@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="tr">
+<!DOCTYPE html><html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mutlu Yıllar Tangülüm 🎉</title>
   <style>
     body {
@@ -13,195 +13,199 @@
       overflow-x: hidden;
     }
     h1 {
-      margin-top: 20px;
-      font-size: 2.5em;
+      margin-top: 16px;
+      font-size: 2.4em;
       text-shadow: 2px 2px 5px #000;
     }
     p {
-      font-size: 1.2em;
-      margin: 10px;
+      font-size: 1.1em;
+      margin: 8px 12px 0;
       text-shadow: 1px 1px 3px #000;
-    }
+    }/* Slideshow alanı */
+.slideshow {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* sabit yükseklik, küçük görünsün */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 14px auto 8px;
+}
+.slides {
+  position: absolute;
+  display: none;
+  max-width: 30%; /* ~%30 küçültme */
+  min-width: 220px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+}
+/* Zıplayarak yavaşça belirsin */
+.animIn {
+  animation: bounceFade 1300ms ease forwards;
+}
+@keyframes bounceFade {
+  0% { transform: scale(0.6) translateY(80px); opacity: 0; }
+  45% { transform: scale(1.1) translateY(-16px); opacity: 1; }
+  70% { transform: scale(0.95) translateY(8px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
 
-    /* Slideshow */
-    .slideshow {
-      position: relative;
-      max-width: 100%;
-      margin: 20px auto;
-      height: 400px;
-    }
-    .slides {
-      display: none;
-      max-width: 30%;
-      margin: auto;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-      animation: bounceFade 1.5s;
-    }
+/* Kontroller */
+.controls {
+  position: fixed;
+  left: 0; right: 0; bottom: 12px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+  align-items: center; justify-content: center;
+  z-index: 9999; /* her şeyin üstünde */
+}
+button {
+  padding: 10px 14px;
+  border: 0; border-radius: 12px;
+  background: #ff4081; color: #fff; font-size: 15px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+button:hover { background: #e91e63; }
 
-    @keyframes bounceFade {
-      0% { transform: scale(0.5) translateY(100px); opacity: 0; }
-      50% { transform: scale(1.1) translateY(-20px); opacity: 1; }
-      70% { transform: scale(0.9) translateY(10px); }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
+/* Efekt kanvası */
+canvas#fx {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 10; pointer-events: none; /* tıklamayı engelleme */
+}
 
-    /* Controls */
-    .controls { margin: 10px; }
-    button {
-      margin: 5px;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 10px;
-      background: #ff4081;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover { background: #e91e63; }
+/* Kalpler (DOM elemanı) */
+.heart {
+  position: fixed; bottom: 10px; left: 0;
+  font-size: 22px; color: #ff4d6d;
+  z-index: 15; /* kanvasın üstünde */
+  animation: floatUp 2200ms ease forwards;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+}
+@keyframes floatUp {
+  from { transform: translateY(0) scale(0.9); opacity: 1; }
+  to   { transform: translateY(-180px) scale(1.1); opacity: 0; }
+}
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    /* Hearts floating */
-    .heart {
-      position: fixed;
-      color: red;
-      font-size: 24px;
-      animation: floatUp 3s ease forwards;
-    }
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-200px); opacity: 0; }
-    }
   </style>
 </head>
 <body>
   <h1>🎉 Mutlu Yıllar Tangülüm 🌹</h1>
-  <p>Sevgiyle, mutlulukla, güzelliklerle dolu bir yıl seni bekliyor.<br>
-     Hayatımda olduğun için çok şanslıyım. Nice güzel yıllara birlikte! 💖</p>
+  <p>Sevgiyle, mutlulukla, güzelliklerle dolu bir yıl seni bekliyor.<br/>Hayatımda olduğun için çok şanslıyım. Nice güzel yıllara birlikte! 💖</p>  <!-- Slideshow -->  <div class="slideshow">
+    <img class="slides" src="1.jpg" alt="foto 1" />
+    <img class="slides" src="2.jpg" alt="foto 2" />
+    <img class="slides" src="3.jpg" alt="foto 3" />
+    <img class="slides" src="4.jpg" alt="foto 4" />
+    <img class="slides" src="5.jpg" alt="foto 5" />
+    <img class="slides" src="6.jpg" alt="foto 6" />
+    <img class="slides" src="7.jpg" alt="foto 7" />
+    <img class="slides" src="8.jpg" alt="foto 8" />
+  </div>  <!-- Müzik --><audio id="bgm" src="Careless.mp3" preload="auto"></audio>
 
-  <!-- Slideshow -->
-  <div class="slideshow">
-    <img class="slides" src="1.jpg">
-    <img class="slides" src="2.jpg">
-    <img class="slides" src="3.jpg">
-    <img class="slides" src="4.jpg">
-    <img class="slides" src="5.jpg">
-    <img class="slides" src="6.jpg">
-    <img class="slides" src="7.jpg">
-    <img class="slides" src="8.jpg">
-  </div>
-
-  <!-- Music -->
-  <audio id="bgm" src="Careless.mp3" preload="auto"></audio>
-
-  <!-- Controls -->
-  <div class="controls">
+  <!-- Butonlar -->  <div class="controls">
     <button onclick="playMusic()">▶ Müziği Başlat</button>
     <button onclick="pauseMusic()">⏸ Müziği Durdur</button>
-    <button onclick="fireworks()">🎇 Havai Fişek</button>
-    <button onclick="balloons()">🎈 Balon Patlat</button>
-    <button onclick="hearts()">❤️ Kalpler</button>
-  </div>
-
-  <canvas id="effects"></canvas>
+    <button onclick="fireworksBurst()">🎇 Havai Fişek</button>
+    <button onclick="balloonRise()">🎈 Balon Patlat</button>
+    <button onclick="heartsBurst(12)">❤️ Kalpler</button>
+  </div><canvas id="fx"></canvas>
 
   <script>
+    /* ======== ES5 uyumlu JS (var + function) ======== */
     // Slideshow
-    let slideIndex = 0;
-    function showSlides() {
-      let slides = document.getElementsByClassName("slides");
-      for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-      slideIndex++;
-      if (slideIndex > slides.length) slideIndex = 1;
-      slides[slideIndex-1].style.display = "block";
-
-      // Her geçişte efektler
-      fireworks();
-      balloons();
-      hearts();
-
-      setTimeout(showSlides, 4000);
-    }
-    window.onload = showSlides;
-
-    // Music
-    function playMusic() {
-      document.getElementById("bgm").play();
-    }
-    function pauseMusic() {
-      let bgm = document.getElementById("bgm");
-      bgm.pause();
-      bgm.currentTime = 0;
-    }
-
-    // Canvas
-    const canvas = document.getElementById("effects");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let particles = [];
-
-    function createParticle(x, y, color, vx, vy) {
-      particles.push({
-        x: x,
-        y: y,
-        color: color,
-        size: Math.random()*8+4,
-        life: 100,
-        vx: vx || (Math.random()-0.5)*6,
-        vy: vy || (Math.random()-0.5)*6
-      });
-    }
-    function randomColor() {
-      return `hsl(${Math.random()*360}, 100%, 50%)`;
-    }
-
-    function fireworks() {
-      for (let i=0;i<40;i++){
-        createParticle(canvas.width/2, canvas.height/2, randomColor());
+    var slideIndex = -1;
+    var slideTimer = null;
+    function showNext() {
+      var slides = document.getElementsByClassName('slides');
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+        slides[i].className = slides[i].className.replace(' animIn', '');
       }
+      slideIndex = (slideIndex + 1) % slides.length;
+      var cur = slides[slideIndex];
+      cur.style.display = 'block';
+      // animasyonu her seferinde tetikle
+      setTimeout(function(){ cur.className += ' animIn'; }, 10);
+
+      // her karede efekt yağdır
+      fireworksBurst();
+      balloonRise();
+      heartsBurst(8);
     }
-    function balloons() {
-      for (let i=0;i<20;i++){
-        createParticle(Math.random()*canvas.width, canvas.height, "red", 0, -Math.random()*5-2);
-      }
+    function startSlides(){
+      if (slideTimer) { clearInterval(slideTimer); }
+      showNext();
+      slideTimer = setInterval(showNext, 4000);
     }
 
-    // Hearts
-    function hearts() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random()*window.innerWidth + "px";
-      heart.style.top = (window.innerHeight-50) + "px";
-      heart.innerHTML = "❤️";
-      document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(), 3000);
+    // Müzik kontrolü
+    function playMusic(){ var a = document.getElementById('bgm'); a.play(); }
+    function pauseMusic(){ var a = document.getElementById('bgm'); a.pause(); a.currentTime = 0; }
+
+    // Canvas hazırla
+    var canvas = document.getElementById('fx');
+    var ctx = canvas.getContext('2d');
+    function sizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    // Parçacık sistemi
+    var particles = [];
+    function Particle(x, y, color, vx, vy, size, life){
+      this.x=x; this.y=y; this.color=color;
+      this.vx=typeof vx==='number'?vx:(Math.random()-0.5)*6;
+      this.vy=typeof vy==='number'?vy:(Math.random()-0.5)*6;
+      this.size=size || (Math.random()*7+4);
+      this.life=life || 100;
+    }
+    function addParticle(x,y,color,vx,vy,size,life){
+      particles.push(new Particle(x,y,color,vx,vy,size,life));
+    }
+    function randColor(){
+      var hue = Math.floor(Math.random()*360);
+      return 'hsl('+hue+',100%,50%)';
     }
 
-    // Animate particles
-    function animate() {
+    function fireworksBurst(){
+      var cx = canvas.width/2, cy = canvas.height/2;
+      for (var i=0;i<80;i++) addParticle(cx, cy, randColor());
+    }
+    function balloonRise(){
+      for (var i=0;i<40;i++) addParticle(Math.random()*canvas.width, canvas.height+10, '#ff5c8a', 0, -(Math.random()*4+2), Math.random()*6+4, 90);
+    }
+
+    function loop(){
       ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach((p,i)=>{
+      for (var i=particles.length-1; i>=0; i--) {
+        var p = particles[i];
         ctx.beginPath();
-        ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-        p.x+=p.vx;
-        p.y+=p.vy;
-        p.life--;
-        if(p.life<=0) particles.splice(i,1);
-      });
-      requestAnimationFrame(animate);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+        ctx.fillStyle = p.color; ctx.fill();
+        p.x += p.vx; p.y += p.vy; p.life--;
+        if (p.life<=0) { particles.splice(i,1); }
+      }
+      requestAnimationFrame(loop);
     }
-    animate();
-  </script>
-</body>
+    loop();
+
+    // Kalpler (DOM)
+    function heartsBurst(n){
+      n = n || 8;
+      for (var i=0;i<n;i++) {
+        (function(){
+          var h = document.createElement('div');
+          h.className = 'heart';
+          h.textContent = '❤️';
+          h.style.left = (Math.random()* (window.innerWidth - 24)) + 'px';
+          h.style.bottom = '12px';
+          h.style.fontSize = (18 + Math.random()*16) + 'px';
+          document.body.appendChild(h);
+          setTimeout(function(){ if(h && h.parentNode){ h.parentNode.removeChild(h); } }, 2200);
+        })();
+      }
+    }
+
+    // Başlat
+    window.addEventListener('load', function(){ startSlides(); });
+  </script></body>
 </html>
